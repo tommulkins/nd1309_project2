@@ -32,7 +32,7 @@ contract StarNotary is ERC721 {
     function putStarUpForSale(uint256 _tokenId, uint256 _price) public {
         require(
             ownerOf(_tokenId) == msg.sender,
-            "You can't sale the Star you don't owned"
+            "You can't sell a Star you don't own"
         );
         starsForSale[_tokenId] = _price;
     }
@@ -55,13 +55,15 @@ contract StarNotary is ERC721 {
         }
     }
 
-    // Implement Task 1 lookUptokenIdToStarInfo
     function lookUptokenIdToStarInfo(uint256 _tokenId)
         public
         view
-        returns (string memory)
+        returns (string memory name, string memory symbol)
     {
-        //1. You should return the Star saved in tokenIdToStarInfo mapping
+        return (
+            tokenIdToStarInfo[_tokenId].name,
+            tokenIdToStarInfo[_tokenId].symbol
+        );
     }
 
     // Implement Task 1 Exchange Stars function

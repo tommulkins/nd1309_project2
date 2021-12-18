@@ -2,34 +2,70 @@
 <html>
   <head>
     <title>StarNotary DAPP</title>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
   </head>
   <style>
     input {
       display: block;
       margin-bottom: 12px;
     }
+
+    .video {
+      display: flex;
+      justify-content: center;
+      background-color: black;
+    }
   </style>
   <body>
+    <div class="video">
+      <video
+        min-height="500"
+        max-width="100%"
+        controls=""
+        controlslist="nodownload"
+        muted="1"
+        loop=""
+        autoplay=""
+        preload="auto"
+      >
+        <source
+          src="https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/SRsQjwFQMjby34s1c/videoblocks-spiral-milky-way-galaxy-rotating-in-space-filled-with-stars-and-nebulas-bright-galactic-core-shines-and-spiral-arms-rotate-slowly-consisting-of-millions-star-systems-3d-cgi-animation-in-ul__43a865047b0babc7746cd6d700c49f16__P360.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+
     <h1>StarNotary Token DAPP</h1>
 
-    <hr>
+    <hr />
 
-    <br>
-      <h1>Create a Star</h1>
-      <br><label for="starName">Star Name:</label><input type="text" id="starName"></input>
-      <br><label for="starId">Star ID:</label><input type="text" id="starId"></input>
-      <br><br><button id="createStar" onclick="App.createStar()">Create Star</button>
-      <br>
-      <hr>
-      <br>
-      <h1>Look up a Star</h1>
-      <br><label for="name">Star ID:</label><input type="text" id="lookid"></input>
-      <br><br><button onclick="App.lookUp()">Look Up a Star</button>
-      <hr>
-      <br>
-      <span id="status"></span>
-      <br>
+    <br />
+    <h1>Create a Star</h1>
+    <br /><label for="starName">Star Name:</label
+    ><input type="text" id="starName" /> <br /><label for="starSymbol"
+      >Star Symbol:</label
+    ><input type="text" id="starSymbol" /> <br /><label for="starId"
+      >Star ID:</label
+    ><input type="text" id="starId" /> <br /><br /><button
+      id="createStar"
+      onclick="App.createStar()"
+    >
+      Create Star
+    </button>
+    <br />
+    <hr />
+    <br />
+    <h1>Look up a Star</h1>
+    <br /><label for="lookid">Star ID:</label><input type="text" id="lookid" />
+    <br /><br /><button onclick="App.lookUp()">Look Up a Star</button>
+    <hr />
+    <br />
+    <span id="status"></span>
+    <br />
     <script src="index.js"></script>
   </body>
 </html>
