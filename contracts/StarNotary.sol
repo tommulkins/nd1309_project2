@@ -58,20 +58,34 @@ contract StarNotary is ERC721 {
     function lookUptokenIdToStarInfo(uint256 _tokenId)
         public
         view
-        returns (string memory name, string memory symbol)
+        returns (
+            string memory name,
+            string memory symbol,
+            address owner
+        )
     {
         return (
             tokenIdToStarInfo[_tokenId].name,
-            tokenIdToStarInfo[_tokenId].symbol
+            tokenIdToStarInfo[_tokenId].symbol,
+            ownerOf(_tokenId)
         );
     }
 
     // Implement Task 1 Exchange Stars function
     function exchangeStars(uint256 _tokenId1, uint256 _tokenId2) public {
+        address token1OwnerAddress = ownerOf(_tokenId1);
+        address token2OwnerAddress = ownerOf(_tokenId2);
         //1. Passing to star tokenId you will need to check if the owner of _tokenId1 or _tokenId2 is the sender
+        require(
+            msg.sender == token1OwnerAddress ||
+                msg.sender == token2OwnerAddress,
+            "You don't own this star token so I can't exchange it."
+        );
         //2. You don't have to check for the price of the token (star)
         //3. Get the owner of the two tokens (ownerOf(_tokenId1), ownerOf(_tokenId1)
         //4. Use _transferFrom function to exchange the tokens.
+        _transferFrom(token1OwnerAddress, token2OwnerAddress, _tokenId1);
+        _transferFrom(token2OwnerAddress, token1OwnerAddress, _tokenId2);
     }
 
     // Implement Task 1 Transfer Stars

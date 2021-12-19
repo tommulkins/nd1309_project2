@@ -45,15 +45,54 @@ const App = {
     const { lookUptokenIdToStarInfo } = this.meta.methods;
     const id = parseInt(document.getElementById("lookid").value);
 
-    if (Number.isNaN(parseInt(id))) {
+    if (Number.isNaN(id)) {
       App.setStatus("Must provide a valid number.");
       return;
     }
 
-    const result = await lookUptokenIdToStarInfo(id).call({
-      from: this.account,
-    });
-    App.setStatus(result.name ? result.name : "Star not found!");
+    try {
+      const result = await lookUptokenIdToStarInfo(id).call({
+        from: this.account,
+      });
+      App.setStatus(
+        `Name: ${result.name}
+      <br />
+       Symbol: ${result.symbol}
+      <br />
+       Owner: ${result.owner}
+      `
+      );
+    } catch (error) {
+      console.error(error);
+      App.setStatus("Star not found!");
+    }
+  },
+
+  // Exchange stars
+  exchangeStars: async function () {
+    const { exchangeStars } = this.meta.methods;
+    const starOne = parseInt(document.getElementById("exchangeStar1").value);
+    const starTwo = parseInt(document.getElementById("exchangeStar2").value);
+
+    if (Number.isNaN(starOne) || Number.isNaN(starTwo)) {
+      App.setStatus("Must provide a valid number.");
+      return;
+    }
+
+    try {
+      const result = await exchangeStars(starOne, starTwo).send({
+        from: this.account,
+      });
+      console.log(result);
+      App.setStatus("The stars have been exchanged!");
+    } catch (error) {
+      console.error(error);
+      App.setStatus(
+        error.message
+          ? "You don't own either star and so I can't transfer them."
+          : "Encountered a problem"
+      );
+    }
   },
 };
 
