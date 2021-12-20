@@ -94,6 +94,32 @@ const App = {
       );
     }
   },
+  // Exchange stars
+  transferStar: async function () {
+    const { transferStar } = this.meta.methods;
+    const id = parseInt(document.getElementById("transferId").value);
+    const toAddress = document.getElementById("toAddress").value.trim();
+
+    if (Number.isNaN(id)) {
+      App.setStatus("Must provide a valid number.");
+      return;
+    }
+
+    try {
+      const result = await transferStar(toAddress, id).send({
+        from: this.account,
+      });
+      console.log(result);
+      App.setStatus("The star has been transferred!");
+    } catch (error) {
+      console.error(error);
+      App.setStatus(
+        error.message
+          ? "You don't own that star or the wallet address is invalid.  Please check and try again."
+          : "Encountered a problem"
+      );
+    }
+  },
 };
 
 window.App = App;
