@@ -32,12 +32,19 @@ const App = {
   },
 
   createStar: async function () {
-    const { createStar } = this.meta.methods;
-    const name = document.getElementById("starName").value;
-    const symbol = document.getElementById("starSymbol").value;
-    const id = document.getElementById("starId").value;
-    await createStar(name, symbol, id).send({ from: this.account });
-    App.setStatus("New Star Owner is " + this.account + ".");
+    try {
+      const { createStar } = this.meta.methods;
+      const name = document.getElementById("starName").value;
+      const symbol = document.getElementById("starSymbol").value;
+      const id = document.getElementById("starId").value;
+      await createStar(name, symbol, id).send({ from: this.account });
+      App.setStatus("New Star Owner is " + this.account + ".");
+    } catch (error) {
+      console.error(error);
+      App.setStatus(
+        "Problem creating star. Try resetting your Metamask account."
+      );
+    }
   },
 
   // Implement Task 4 Modify the front end of the DAPP
