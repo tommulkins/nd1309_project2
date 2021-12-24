@@ -65,8 +65,6 @@ const App = {
         `Name: ${result.name}
       <br />
        Symbol: ${result.symbol}
-      <br />
-       Owner: ${result.owner}
       `
       );
     } catch (error) {
