@@ -1,10 +1,10 @@
 ## 1) Your ERC-721 Token Name
 
-**Tom's Star**
+**Udacity StarNotary NFT**
 
 ## 2) Your ERC-721 Token Symbol
 
-**TOM**
+**STAR**
 
 ## 3) Version of the Truffle and OpenZeppelin used
 
@@ -14,8 +14,8 @@ openzeppelin-solidity@2.3
 
 ## 4) Your Token Address on the Rinkeby Network
 
-_Transaction Hash:_ 0xdb53bdbbe98ce5a6b28cdbd929b94d1f16e75b17273fd267ab930acdf22ef2ac
+_Transaction Hash:_ 0xde152e173c3a1b2134becb7c456c0bafb9593ab94bfea655b351e06ef6941fa5
 
-_Contract Address:_ 0x74d088AfB0Db44D7D34D7660165F6Ff6eB787F0a
+_Contract Address:_ 0x460aE9199E7A64220830963662595072fde7da82
 
-_Rinkeby URL:_ https://rinkeby.etherscan.io/tx/0xdb53bdbbe98ce5a6b28cdbd929b94d1f16e75b17273fd267ab930acdf22ef2ac
+_Rinkeby URL:_ https://rinkeby.etherscan.io/tx/0xde152e173c3a1b2134becb7c456c0bafb9593ab94bfea655b351e06ef6941fa5
