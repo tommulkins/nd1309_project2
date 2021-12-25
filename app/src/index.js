@@ -35,9 +35,10 @@ const App = {
     try {
       const { createStar } = this.meta.methods;
       const name = document.getElementById("starName").value;
+      // Don't know what to do with this
       const symbol = document.getElementById("starSymbol").value;
       const id = document.getElementById("starId").value;
-      await createStar(name, symbol, id).send({ from: this.account });
+      await createStar(name, id).send({ from: this.account });
       App.setStatus("New Star Owner is " + this.account + ".");
     } catch (error) {
       console.error(error);
@@ -61,12 +62,7 @@ const App = {
       const result = await lookUptokenIdToStarInfo(id).call({
         from: this.account,
       });
-      App.setStatus(
-        `Name: ${result.name}
-      <br />
-       Symbol: ${result.symbol}
-      `
-      );
+      App.setStatus(`Name: ${result}`);
     } catch (error) {
       console.error(error);
       App.setStatus("Star not found!");
@@ -99,7 +95,7 @@ const App = {
       );
     }
   },
-  // Exchange stars
+  // Transfer stars
   transferStar: async function () {
     const { transferStar } = this.meta.methods;
     const id = parseInt(document.getElementById("transferId").value);

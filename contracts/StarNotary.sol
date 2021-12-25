@@ -1,17 +1,17 @@
 pragma solidity >=0.4.24;
 
 //Importing openzeppelin-solidity ERC-721 implemented Standard
-import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
+import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
 
 // StarNotary Contract declaration inheritance the ERC721 openzeppelin implementation
-contract StarNotary is ERC721Full {
+contract StarNotary is ERC721 {
     // Token metdata
-    constructor() public ERC721Full("Star Notary NFT", "STAR") {}
+    string public constant name = "Udacity StarNotary NFT";
+    string public constant symbol = "STAR";
 
     // Star data
     struct Star {
         string name;
-        string symbol;
     }
 
     // mapping the Star with the Owner Address
@@ -20,13 +20,9 @@ contract StarNotary is ERC721Full {
     mapping(uint256 => uint256) public starsForSale;
 
     // Create Star using the Struct
-    function createStar(
-        string memory _name,
-        string memory _symbol,
-        uint256 _tokenId
-    ) public {
+    function createStar(string memory _name, uint256 _tokenId) public {
         // Passing the name and tokenId as a parameters
-        Star memory newStar = Star(_name, _symbol); // Star is an struct so we are creating a new Star
+        Star memory newStar = Star(_name); // Star is an struct so we are creating a new Star
         tokenIdToStarInfo[_tokenId] = newStar; // Creating in memory the Star -> tokenId mapping
         _mint(msg.sender, _tokenId); // _mint assign the the star with _tokenId to the sender address (ownership)
     }
@@ -61,12 +57,9 @@ contract StarNotary is ERC721Full {
     function lookUptokenIdToStarInfo(uint256 _tokenId)
         public
         view
-        returns (string memory name, string memory symbol)
+        returns (string memory name)
     {
-        return (
-            tokenIdToStarInfo[_tokenId].name,
-            tokenIdToStarInfo[_tokenId].symbol
-        );
+        return tokenIdToStarInfo[_tokenId].name;
     }
 
     // Implement Task 1 Exchange Stars function
